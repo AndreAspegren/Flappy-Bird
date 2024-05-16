@@ -1,2 +1,22 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿using System;
+
+namespace Hoved
+{
+    class Program
+    {
+        internal static void Main(string[] args)
+        {
+            var obj = new mainClass();
+            obj.Run();  
+        }
+    }
+
+    public class mainClass
+    {
+        public void Run()
+        {
+
+        }
+    }
+}
+
