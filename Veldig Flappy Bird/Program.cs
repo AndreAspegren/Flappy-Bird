@@ -8,29 +8,27 @@ namespace Hoved
         internal static void Main(string[] args)
         {
             var obj = new mainClass();
-            obj.Run();  
+            obj.Run();
         }
     }
 
     public class mainClass
     {
-        
         public void Run()
         {
             var state = new gameState();
-            var graphics = new graphics();
+            var graphics = new Graphics();
+
             while (state.gameOn)
             {
-                
-                Thread.Sleep(1000);
+                Console.Clear();
+                Console.WriteLine($"Score: {state.score}");
 
                 foreach (var line in graphics.bird)
                 {
-                    int padding = (Console.WindowWidth - line.Length) / 2;
-                    Console.WriteLine(line.PadLeft(padding + line.Length));
+                    Console.WriteLine(line.PadLeft((Console.WindowWidth + line.Length) / 2));
                 }
-
-                Console.Clear();
+                Thread.Sleep(10);
             }
         }
     }
@@ -41,7 +39,7 @@ namespace Hoved
         public bool gameOn = true;
     }
 
-    public class graphics
+    public class Graphics
     {
         public string[] bird = new string[]
         {
@@ -54,4 +52,3 @@ namespace Hoved
         };
     }
 }
-
