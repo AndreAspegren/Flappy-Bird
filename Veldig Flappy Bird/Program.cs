@@ -15,7 +15,17 @@ namespace Hoved
     {
         public void Run()
         {
-
+            while (true)
+            {
+                Thread.Sleep(10);
+                Console.Clear();
+                Console.WriteLine("   *****   ");
+                Console.WriteLine(" *       * ");
+                Console.WriteLine("*  O   O  *");
+                Console.WriteLine("*    ∆    *");
+                Console.WriteLine(" *  \\_/  * ");
+                Console.WriteLine("   *****   ");
+            }
         }
     }
 }
