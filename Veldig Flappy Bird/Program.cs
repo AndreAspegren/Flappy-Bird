@@ -17,7 +17,7 @@ namespace Hoved
         {
             while (true)
             {
-                Thread.Sleep(10);
+                Thread.Sleep(1);
                 Console.Clear();
                 Console.WriteLine("   *****   ");
                 Console.WriteLine(" *       * ");
