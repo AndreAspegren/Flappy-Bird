@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 
 namespace Hoved
 {
@@ -13,20 +14,40 @@ namespace Hoved
 
     public class mainClass
     {
+        
         public void Run()
         {
-            while (true)
+            var state = new gameState();
+            var graphics = new graphics();
+            while (state.gameOn)
             {
-                Thread.Sleep(10);
                 Console.Clear();
-                Console.WriteLine("   *****   ");
-                Console.WriteLine(" *       * ");
-                Console.WriteLine("*  O   O  *");
-                Console.WriteLine("*    ∆    *");
-                Console.WriteLine(" *  \\_/  * ");
-                Console.WriteLine("   *****   ");
+                Thread.Sleep(1);
+                Console.WriteLine(state.score);
+                
+                Console.WriteLine($"{graphics.bird}");
+
             }
         }
+    }
+
+    public class gameState
+    {
+        public int score = 0;
+        public bool gameOn = true;
+    }
+
+    public class graphics
+    {
+        public string[] bird = new string[]
+        {
+            "   *****   ",
+            " *       * ",
+            "*  O   O  *",
+            "*    ∆    *",
+            " *  \\_/  * ",
+            "   *****   "
+        };
     }
 }
 
