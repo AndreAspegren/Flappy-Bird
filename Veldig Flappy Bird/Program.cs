@@ -21,12 +21,16 @@ namespace Hoved
             var graphics = new graphics();
             while (state.gameOn)
             {
-                Console.Clear();
-                Thread.Sleep(1);
-                Console.WriteLine(state.score);
                 
-                Console.WriteLine($"{graphics.bird}");
+                Thread.Sleep(1000);
 
+                foreach (var line in graphics.bird)
+                {
+                    int padding = (Console.WindowWidth - line.Length) / 2;
+                    Console.WriteLine(line.PadLeft(padding + line.Length));
+                }
+
+                Console.Clear();
             }
         }
     }
