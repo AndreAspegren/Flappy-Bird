@@ -1,54 +1,25 @@
 ﻿using System;
 using System.Threading;
 
-namespace Hoved
+using Veldig_Flappy_Bird;
+
+var game = new GameLogic();
+var pipes = new Pipes();
+var movement = 0;
+var timer = 0;
+Run(); 
+void Run()
 {
-    class Program
+    Console.SetWindowSize(300, 300);
+    while (true)
     {
-        internal static void Main(string[] args)
-        {
-            var obj = new mainClass();
-            obj.Run();
-        }
-    }
-
-    public class mainClass
-    {
-        public void Run()
-        {
-            var state = new gameState();
-            var graphics = new Graphics();
-
-            while (state.gameOn)
-            {
-                Console.Clear();
-                Console.WriteLine($"Score: {state.score}");
-
-                foreach (var line in graphics.bird)
-                {
-                    Console.WriteLine(line.PadLeft((Console.WindowWidth + line.Length) / 2));
-                }
-                Thread.Sleep(10);
-            }
-        }
-    }
-
-    public class gameState
-    {
-        public int score = 0;
-        public bool gameOn = true;
-    }
-
-    public class Graphics
-    {
-        public string[] bird = new string[]
-        {
-            "   *****   ",
-            " *       * ",
-            "*  O   O  *",
-            "*    ∆    *",
-            " *  \\_/  * ",
-            "   *****   "
-        };
+        pipes.draw(movement, 20);
+        if (timer % 5 == 0) pipes.addPipe(250);
+        Thread.Sleep(200);
+        movement--;
+        pipes.gameTime--;
+        timer++;
     }
 }
+
+
