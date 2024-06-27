@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Veldig_Flappy_Bird
 {
@@ -16,28 +13,44 @@ namespace Veldig_Flappy_Bird
         public void addPipe(int consoleWidth)
         {
             var height = random.Next(5, 15);
+
+            var pipePossition = random.Next(1, 3);
+
             string[] newPipe = new string[height + 2];
-            newPipe[0] = "|¨¨¨¨|";
+            newPipe[0] = pipePossition == 1 ? "|____|" : "|¨¨¨¨|";
             for (int i = 1; i <= height; i++)
             {
                 newPipe[i] = "|    |";
             }
-            newPipe[height + 1] = "|____|";
-            pipes.Add(new Pipe(newPipe, consoleWidth, 70));
+            newPipe[height + 1] = pipePossition == 1 ? "|¨¨¨¨|" : "|____|";
+
+            int initialX = consoleWidth;
+            if (pipes.Count > 0)
+            {
+                initialX = pipes[^1].x + 10;
+            }
+
+            pipes.Add(new Pipe(newPipe, initialX, 50, pipePossition));
         }
 
-        public void draw(int x, int y)
+        public void draw(int consoleWidth)
         {
             Console.Clear();
-            foreach (var pipe in pipes)
+            for (int index = 0; index < pipes.Count; index++)
             {
-                for (int i = 0; i < pipe.pipe.Length; i++)
+                var pipe = pipes[index];
+                int pipeX = consoleWidth - gameTime + (index * 10); 
+
+                if (pipeX > 5)
                 {
-                    Console.SetCursorPosition(x + gameTime, y + i);
-                    Console.WriteLine(pipe.pipe[i]);
+                    for (int i = 0; i < pipe.pipe.Length; i++)
+                    {
+                        Console.SetCursorPosition(pipeX, pipe.isTop == 1 ? 30 - i : 0 + i);
+                        Console.WriteLine(pipe.pipe[i]);
+                    }
                 }
+                else pipes.RemoveAt(index);
             }
         }
     }
 }
-

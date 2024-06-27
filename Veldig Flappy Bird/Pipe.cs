@@ -11,12 +11,14 @@ namespace Veldig_Flappy_Bird
         public string[] pipe;
         public int x;
         public int y;
+        public int isTop;
 
-        public Pipe(string[] p, int X, int Y)
+        public Pipe(string[] p, int X, int Y, int B)
         {
             x = X;
             y = Y;
             pipe = p;
+            isTop = B;
         }
     }
 }
