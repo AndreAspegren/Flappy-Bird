@@ -41,7 +41,7 @@ namespace Veldig_Flappy_Bird
                 var pipe = pipes[index];
                 int pipeX = consoleWidth - gameTime + (index * 10); 
 
-                if (pipeX > 5)
+                if (pipeX > 2)
                 {
                     for (int i = 0; i < pipe.pipe.Length; i++)
                     {
