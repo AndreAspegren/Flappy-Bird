@@ -15,7 +15,7 @@ void Run()
     {
         pipes.draw(consoleWidth);
         if (timer % 5 == 0) pipes.addPipe(124);
-        Thread.Sleep(500);
+        Thread.Sleep(100);
         pipes.gameTime++;
         timer++;
     }

@@ -39,13 +39,13 @@ namespace Veldig_Flappy_Bird
             for (int index = 0; index < pipes.Count; index++)
             {
                 var pipe = pipes[index];
-                int pipeX = consoleWidth - gameTime + (index * 10); 
-
+                int pipeX = consoleWidth - gameTime + (index * 20); 
+                if (gameTime == 100) gameTime = 0;
                 if (pipeX > 2)
                 {
                     for (int i = 0; i < pipe.pipe.Length; i++)
                     {
-                        Console.SetCursorPosition(pipeX, pipe.isTop == 1 ? 30 - i : 0 + i);
+                        Console.SetCursorPosition(pipeX < 210 ? pipeX : 210, pipe.isTop == 1 ? 30 - i : 0 + i);
                         Console.WriteLine(pipe.pipe[i]);
                     }
                 }
