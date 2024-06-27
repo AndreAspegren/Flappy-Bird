@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 
 namespace Hoved
 {
@@ -7,7 +8,7 @@ namespace Hoved
         internal static void Main(string[] args)
         {
             var obj = new mainClass();
-            obj.Run();  
+            obj.Run();
         }
     }
 
@@ -15,18 +16,39 @@ namespace Hoved
     {
         public void Run()
         {
-            while (true)
+            var state = new gameState();
+            var graphics = new Graphics();
+
+            while (state.gameOn)
             {
-                Thread.Sleep(1);
                 Console.Clear();
-                Console.WriteLine("   *****   ");
-                Console.WriteLine(" *       * ");
-                Console.WriteLine("*  O   O  *");
-                Console.WriteLine("*    ∆    *");
-                Console.WriteLine(" *  \\_/  * ");
-                Console.WriteLine("   *****   ");
+                Console.WriteLine($"Score: {state.score}");
+
+                foreach (var line in graphics.bird)
+                {
+                    Console.WriteLine(line.PadLeft((Console.WindowWidth + line.Length) / 2));
+                }
+                Thread.Sleep(10);
             }
         }
     }
-}
 
+    public class gameState
+    {
+        public int score = 0;
+        public bool gameOn = true;
+    }
+
+    public class Graphics
+    {
+        public string[] bird = new string[]
+        {
+            "   *****   ",
+            " *       * ",
+            "*  O   O  *",
+            "*    ∆    *",
+            " *  \\_/  * ",
+            "   *****   "
+        };
+    }
+}
