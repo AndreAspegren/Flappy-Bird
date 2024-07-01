@@ -8,8 +8,8 @@ namespace Veldig_Flappy_Bird
 {
     internal class Board
     {
-        public int height = 20;
-        public int width = 50;
+        public int height = 50;
+        public int width = 150;
 
         public void Draw()
         {

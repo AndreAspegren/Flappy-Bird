@@ -41,7 +41,6 @@ namespace Veldig_Flappy_Bird
                 if (gameTime == 100) gameTime = 0;
                 int pipeX = consoleWidth - gameTime + (index * 20); 
                 if (pipeX > 2)
-                int pipeX = pipe.x - gameTime;
 
                 
                 if (pipeX > 0 && pipeX < consoleWidth)

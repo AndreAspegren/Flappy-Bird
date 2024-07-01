@@ -13,7 +13,7 @@ Run();
 void Run()
 {
     int consoleWidth = 124;
-    Console.SetWindowSize(board.width + 2, board.height + 2);
+    Console.SetWindowSize(board.width + 100, board.height + 100);
     var inputThread = new Thread(inputHandler);
     inputThread.Start();
 
@@ -31,14 +31,12 @@ void Run()
 
         if (pipes.CheckCollision(bird.X, bird.Y, bird.bird.Length) || board.CheckCollision(bird.X, bird.Y, bird.bird.Length))
         {
-           // Console.Clear();
+            Console.Clear();
             Console.WriteLine("Game Over!");
             Console.WriteLine($"Score: {pipes.Score}");
             break;
         }
     }
-
-
 }
 
 void inputHandler()
