@@ -27,30 +27,63 @@ namespace Veldig_Flappy_Bird
             int initialX = consoleWidth;
             if (pipes.Count > 0)
             {
-                initialX = pipes[^1].x + 10;
+                initialX = pipes[^1].x + 20;
             }
 
-            pipes.Add(new Pipe(newPipe, initialX, 50, pipePossition));
+            pipes.Add(new Pipe(newPipe, initialX, 0, pipePossition));
         }
 
-        public void draw(int consoleWidth)
+        public void Draw(int consoleWidth)
         {
-            Console.Clear();
             for (int index = 0; index < pipes.Count; index++)
             {
                 var pipe = pipes[index];
-                int pipeX = consoleWidth - gameTime + (index * 20); 
-                if (gameTime == 100) gameTime = 0;
-                if (pipeX > 2)
+                int pipeX = pipe.x - gameTime;
+
+                
+                if (pipeX > 0 && pipeX < consoleWidth)
                 {
                     for (int i = 0; i < pipe.pipe.Length; i++)
                     {
-                        Console.SetCursorPosition(pipeX < 210 ? pipeX : 210, pipe.isTop == 1 ? 30 - i : 0 + i);
-                        Console.WriteLine(pipe.pipe[i]);
+                        int pipeY = pipe.isTop == 1 ? 20 - i : 1 + i; 
+
+                        if (pipeY >= 0 && pipeY < 20) 
+                        {
+                            Console.SetCursorPosition(pipeX, pipeY);
+                            Console.WriteLine(pipe.pipe[i]);
+                        }
                     }
                 }
-                else pipes.RemoveAt(index);
+
+                
+                if (pipeX < 0)
+                {
+                    pipes.RemoveAt(index);
+                    index--;
+                    Score++;
+                }
             }
+        }
+
+
+        public bool CheckCollision(int birdX, int birdY, int birdHeight)
+        {
+            foreach (var pipe in pipes)
+            {
+                if (pipe.x == birdX || pipe.x == birdX + 2)
+                {
+                    for (int i = 0; i < pipe.pipe.Length; i++)
+                    {
+                        int pipeY = pipe.isTop == 1 ? 30 - i : 1 + i;
+                        if (birdY == pipeY || birdY + birdHeight - 1 == pipeY)
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+
+            return false;
         }
     }
 }

@@ -8,18 +8,18 @@ namespace Veldig_Flappy_Bird
 {
     internal class Bird
     {
-        private int X { get; set; }
-        private int Y { get; set; }
+        public int X { get; set; }
+        public int Y { get; set; }
         public string[] bird = new string[]
         {
        "(V)",
  "(^    (`>",
-"((\\__/ )",
+@"((\__/ )",
  @"\<   )",
   @"\<  )",
    "( /",
    "|",
-  " ^",
+   " ^",
 
 
         };
@@ -33,22 +33,22 @@ namespace Veldig_Flappy_Bird
         {
             for (int i = 0; i < bird.Length; i++)
             {
-                Console.SetCursorPosition(X, Y);
+                Console.SetCursorPosition(X, Y+i);
                 Console.Write(bird[i]);
             }
 
         }
         public void Jump()
         {
-            if (Y > 0)
+            if (Y > 1)
             {
-                Y--;
+                Y-= 3;
             }
 
         }
         public void Down()
         {
-            if (Y < Console.WindowHeight - bird.Length)
+            if (Y < Console.WindowHeight - bird.Length -2)
             {
                 Y++;
             }
