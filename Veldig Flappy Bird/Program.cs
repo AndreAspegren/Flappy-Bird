@@ -13,7 +13,7 @@ Run();
 void Run()
 {
     int consoleWidth = 124;
-    Console.SetWindowSize(board.width + 100, board.height + 100);
+    Console.SetWindowSize(board.width + 10, board.height + 10);
     var inputThread = new Thread(inputHandler);
     inputThread.Start();
 
